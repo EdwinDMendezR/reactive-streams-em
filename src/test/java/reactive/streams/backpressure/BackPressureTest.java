@@ -13,11 +13,16 @@ public class BackPressureTest {
         Flux<Long> publisher = Flux.interval(
                 //Duration.ofMillis(100),
                 Duration.ofSeconds(1)
-        );
+        )
+        //podemos limitar la cantidad de eventos emitidos por el publicador utilizando el método take de la clase Flux
+                .take(10);
 
         // Creamos un suscriptor que procesa un evento cada 200 ms
         Flux<Long> subscriber = publisher
-                .delayElements(Duration.ofMillis(200))
+                .delayElements(
+                        //Duration.ofMillis(5),
+                        Duration.ofSeconds(3)
+                )
                 .limitRate(5); // Configuramos el backpressure para procesar solo 5 eventos por segundo
 
         // Nos suscribimos al suscriptor
