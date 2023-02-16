@@ -1,4 +1,4 @@
-package reactive.streams.flux;
+package reactive.streams.flux.merge;
 
 import org.junit.Test;
 import reactor.core.publisher.Flux;
